@@ -1,0 +1,79 @@
+
+pre {
+    overflow-x: auto;
+}
+
+pre code {
+    word-wrap: normal;
+    white-space: pre;
+}
+
+.hue {
+  fill: red;
+  animation: pulse 10s infinite;
+}
+
+@keyframes pulse {
+  0%   { fill: #ff0000 }
+  17%  { fill: #ffff00 }
+  33%  { fill: #00ff00 }
+  50%  { fill: #00ffff }
+  67%  { fill: #0000ff }
+  83%  { fill: #ff00ff }
+  100% { fill: #ff0000 }
+}
+
+#################################
+
+.iconic-lightbulb {
+  cursor: pointer;
+}
+
+.iconic-lightbulb * {
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  transition: .4s;
+}
+
+.iconic-lightbulb .icon-container {
+  fill: #fff;
+  stroke-width: 6;
+  stroke: #fff;
+
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.iconic-lightbulb:hover .icon-container {
+  fill: #fff8db;
+
+  -webkit-transition: 2s;
+  transition: 2s;
+  -webkit-transition: 2s;
+}
+
+.iconic-lightbulb .iconic-lightbulb-light * {
+  stroke-width: 16;
+  stroke: #ddd;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.iconic-lightbulb:hover .iconic-lightbulb-light * {
+  stroke: #fc0;
+  stroke-width: 32;
+}
+
+.iconic-lightbulb .iconic-lightbulb-base {
+  fill: #666;
+}
+
+.iconic-lightbulb .iconic-lightbulb-screws * {
+  fill: none;
+  stroke-width: 16;
+  stroke: #333;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

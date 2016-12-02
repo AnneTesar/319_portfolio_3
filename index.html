@@ -1,0 +1,460 @@
+<html>
+<head>
+<title>SVG Experiments</title>
+<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="custom.css">
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+<h1>Scalable Vector Graphics</h1>
+
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>The Basics</h2>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Simple Shape</label>
+		<p>A shape can be drawn by specifying position and size. Color can be specified in a variety of ways, as can any style element.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="150">
+			<circle cx="50" cy="50" r="40" style="fill:rgb(150,0,255)" stroke="black" stroke-width="4" />
+		</svg>
+	</div>
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
+	&ltcircle cx="50" cy="50" r="40" style="fill:rgb(150,0,255)" stroke="black" stroke-width="4" /&gt;
+&lt/svg &gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Polygon</label>
+		<p>We can create a variety of shapes, including custom polygons. For these, we specify a series of points to draw between.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<polygon points="15,15 30,80 80,150 150,45" style="fill:yellow;stroke:grey;stroke-width:2" />
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
+	&ltpolygon points="15,15 30,80 80,150 150,45" style="fill:yellow;stroke:grey;stroke-width:2"&gt;
+&lt/svg &gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Path</label>
+		<p>We can also specify individual points for Paths. These use functions like Move To (M), Line To (L), 
+			Bezier Curve (q), and Close (Z) to draw shapes. These shapes can be filled in or not. Here we are also
+			demonstrating that you can put multiple shapes into the same SVG tag. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<path d="M 0 150 q 100 -200 200 0" stroke="blue" stroke-width="5" fill="none" />
+			<path d="M 0 175 L 100 100 L 200 175 Z" stroke="blue" stroke-width="3" fill="rgb(100, 150, 200)" />
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
+	&ltpath d="M 0 150 q 100 -200 200 0" stroke="blue" stroke-width="5" fill="none" /&gt;
+	&ltpath d="M 0 175 L 100 100 L 200 175 Z" stroke="blue" stroke-width="3" fill="rgb(100, 150, 200)" /&gt; 
+&lt/svg &gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Order Matters</label>
+		<p>The order that tags are in determines their order drawn on the page. The pink circle was there first,
+			then the green circle was placed on top of it. The green circle has an opacity of 0.5 so you can 
+			still see the pink under it. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<circle cx="50" cy="50" r="40" fill="pink"/>
+			<circle cx="75" cy="75" r="40" opacity="0.5" fill="green"/>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
+	&ltcircle cx="50" cy="50" r="40" fill="pink" /&gt;
+	&ltcircle cx="75" cy="75" r="40" opacity="0.5" fill="green" /&gt; 
+&lt/svg &gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<br>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>Basic Animation with SMIL</h2>
+		<p>SMIL is inherent to SVGs.</p>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Simple Movement</label>
+		<p>This animate tag inside the rectangle tag applies the animation to that rectangle. 
+			We can specify things like starting and ending positions, duration of movement, and 
+			whether to repeat. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"  >
+				<animate attributeName="x" from="25" to="150" dur="3s" repeatCount="indefinite" /> 
+			</rect>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="x" from="25" to="150" dur="3s" repeatCount="indefinite" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Animate Transform</label>
+		<p>There are other animation tags, such as Animate Transform, that allow us to change other properties. 
+			This time we also used an id to apply the animation, rather than having the animation wrapped in the
+			ellipse tag. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="300" height="200">
+			<ellipse id="ellipse" cx="50" cy="70" rx="50" ry="30" style="fill:orange"/>
+			<animateTransform xlink:href="#ellipse" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltellipse id="ellipse" cx="50" cy="70" rx="50" ry="30" style="fill:orange"&gt;
+	&ltanimateTransform xlink:href="#ellipse" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/&gt; 
+&lt/ellipse&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>On Click</label>
+		<p>We can start animations on events like a click. Click the rectangle to change the opacity.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="100">
+			<rect x="25" y="25" width="150" height="50" style="fill:black;"  >
+				<animate attributeName="opacity" from="1" to="0" dur="3s" begin="click"/> 
+			</rect>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>Basic Animation with CSS</h2>
+		<p>Eventually SMIL is going to be deprecated. Can achieve same effects with CSS!</p>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Movement in CSS</label>
+		<p>Text.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect x="25" y="25" width="50" height="50" style="fill:black;"  >
+				<animate attributeName="opacity" from="1" to="0" dur="3s" begin="hover"/> 
+			</rect>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Simple Color Change in CSS</label>
+		<p>We can us CSS to change properties and create animations for SVGs.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<circle cx="50" cy="50" r="40" class="hue" />
+		</svg>
+	</div>
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
+	&ltcircle cx="50" cy="50" r="40" class="hue" /&gt;
+&lt/svg &gt;
+
+........
+
+.hue {
+  fill: red;
+  animation: pulse 10s infinite;
+}
+
+@keyframes pulse {
+  0%   { fill: #ff0000 }
+  17%  { fill: #ffff00 }
+  33%  { fill: #00ff00 }
+  50%  { fill: #00ffff }
+  67%  { fill: #0000ff }
+  83%  { fill: #ff00ff }
+  100% { fill: #ff0000 }
+}
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>On Hover in CSS</label>
+		<p>Text.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
+			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>Advanced Animation with SMIL</h2>
+		<p>Still the best way to do some animations. Hopefully will have a close replacement?</p>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Multiple Animations</label>
+		<p>Text.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
+			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Timing</label>
+		<p>Text.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
+			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+
+
+
+
+
+
+<!--
+
+
+
+
+TEMPLATE
+
+<!-------------------------------------------------------------------------------
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Name</label>
+		<p>Text.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
+			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
+	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+
+/TEMPLATE
+
+<p>Moving Simple Shape</p>
+
+
+<svg width="200" height="200">
+  <defs>
+    <filter id="f2" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceGraphic" dx="10" dy="10" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  <circle cx="50" cy="50" r="40" style="fill:rgb(0,0,255)" stroke="green" stroke-width="4"  filter="url(#f2)" />
+</svg>
+
+
+<svg width="100" height="100">
+
+	<rect id="cool_shape" x="25" y="25" width="50" height="50" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"  />
+
+<animate xlink:href="#cool_shape" attributeType="CSS" attributeName="opacity" 
+           from="1" to="0" dur="4s" repeatCount="indefinite" />
+
+</svg>
+
+<svg width="100" height="100">
+
+	<rect x="25" y="25" width="50" height="50" style="fill:green;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9"  >
+
+		<animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="1s" begin="click" repeatCount="indefinite" />
+		   
+	</rect>
+
+</svg>
+
+<svg width="200" height="200">
+
+	<circle cx="50" cy="50" r="40" style="fill:rgb(0,0,255)" stroke="green" stroke-width="4" >
+
+		<animate attributeType="CSS" attributeName="cx" from="50" to="100" dur="5s" fill="freeze" id="move"/>
+		<animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="5s" begin="move.begin + 3s" />
+		   
+	</circle>
+
+</svg>
+
+
+
+<br>
+
+	
+<svg height="210" width="500">
+  <defs>
+    <filter id="f1" x="0" y="0">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+    </filter>
+  </defs>
+	<polygon points="190,10 240,190 120,210" style="fill:blue;stroke:purple;stroke-width:1" filter="url(#f1)"/>
+	<polygon points="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
+</svg>
+
+
+<br>
+
+<svg version="1.1" class="iconic iconic-lightbulb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="714px" height="714px" viewBox="0 0 714 714" style="enable-background:new 0 0 714 714;" xml:space="preserve">
+  <circle class="icon-container" cx="357" cy="357" r="330" stroke-width="16" stroke="#000" fill="none" />
+  <g class="iconic-lightbulb-screws">
+      <defs>
+          <clipPath id="iconic-lightbulb-screws-clip">
+              <polygon points="304.333,511 433.667,511 430,521.5 281.667,547.167 280.333,521.5"/>
+          </clipPath>
+      </defs>
+      <line clip-path="url(#iconic-lightbulb-screws-clip)" x1="430" y1="505" x2="302" y2="529"/>
+      <line class="st4" x1="430" y1="537" x2="302" y2="561"/>
+      <line class="st4" x1="430" y1="569" x2="302" y2="593"/>
+      <line class="st4" x1="410" y1="605" x2="322" y2="621"/>
+  </g>
+
+  <g class="iconic-lightbulb-light">
+      <defs>
+          <clipPath id="iconic-lightbulb-light-clip">
+              <polygon points="514,329 436,369 436,436 299,436 293,360 489,280"/>
+          </clipPath>
+      </defs>
+      <g clip-path="url(#iconic-lightbulb-light-clip)">
+          <line x1="330" y1="369" x2="330" y2="435"/>
+          <polyline points="478,313 402,349 402,435"/>
+      </g>
+      <line x1="478" y1="129" x2="254" y2="233"/>
+      <line x1="354" y1="125" x2="254" y2="173"/>
+      <line x1="478" y1="189" x2="254" y2="293"/>
+      <line x1="478" y1="249" x2="254" y2="353"/>
+  </g>
+
+  <path class="iconic-lightbulb-base" d="M292.431,505c0.863,4.314,5.169,7.845,9.569,7.845h128c4.4,0,8.706-3.53,9.569-7.845l12.861-64.311c0.863-4.314-2.03-7.845-6.431-7.845H286c-4.4,0-7.294,3.53-6.431,7.845L292.431,505z"/>
+</svg>
+
+-->
+
+</div>
+
+</body>
+
+
+</html>
