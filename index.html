@@ -11,10 +11,18 @@
 <body>
 
 <div class="container-fluid">
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h1>Scalable Vector Graphics (SVG)</h1>
+		<p>Scalable Vector Graphics, or SVGs, are a great way to store images. They are smaller to store and 
+			won't lose resolution when scaled. There are many neat effects that can be applied to SVGs. They 
+			can also be animated in a variety of ways. SVGs are growing in popularity; you can expect to see
+			them more widely used in the future. This will introduce you to some simple ways to create and 
+			animate SVGs.</p>	
+	</div>
+</div>
 
-<h1>Scalable Vector Graphics</h1>
-
-<br>
 <!------------------------------------------------------------------------------->
 <div class="row">
 	<div class="col-md-2"></div>
@@ -113,7 +121,7 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2>Basic Animation with SMIL</h2>
-		<p>SMIL is inherent to SVGs.</p>
+		<p>SMIL is unique to SVGs.</p>
 	</div>
 </div>
 <br>
@@ -185,6 +193,48 @@
 </div>
 <!------------------------------------------------------------------------------->
 <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Bounce</label>
+		<p>Here we've added a bounce animation that happens when you hover over the shape. Note 
+			that the Animate tags can't be shared between different shapes. This is a definite 
+			downside to using SMIL tags as it leads to long and messy code. It would probably be 
+			better to use CSS for this kind of animation.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect x="50" y="50" width="25" height="50" style="fill:red;" >
+				<animate id="up1" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover"/>
+				<animate attributeName="y" from="40" to="50" dur=".1s" begin="up1.end"/>  
+			</rect>
+			<rect x="80" y="50" width="25" height="50" style="fill:orange;" >
+				<animate id="up2" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover"/>
+				<animate attributeName="y" from="40" to="50" dur=".1s" begin="up2.end"/>  
+			</rect>
+			<rect x="110" y="50" width="25" height="50" style="fill:yellow;" >
+				<animate id="up3" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover"/>
+				<animate attributeName="y" from="40" to="50" dur=".1s" begin="up3.end"/>  
+			</rect>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="50" y="50" width="25" height="50" style="fill:red;"&gt;
+	&ltanimate id="up1" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover" /&gt; 
+	&ltanimate attributeName="y" from="40" to="50" dur=".1s" begin="up1.end" /&gt; 
+&lt/rect&gt;
+&ltrect x="80" y="50" width="25" height="50" style="fill:orange;"&gt;
+	&ltanimate id="up1" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover" /&gt; 
+	&ltanimate attributeName="y" from="40" to="50" dur=".1s" begin="up1.end" /&gt; 
+&lt/rect&gt;
+&ltrect x="110" y="50" width="25" height="50" style="fill:yellow;"&gt;
+	&ltanimate id="up1" attributeName="y" from="50" to="40" dur=".1s" begin="mouseover" /&gt; 
+	&ltanimate attributeName="y" from="40" to="50" dur=".1s" begin="up1.end" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<h2>Basic Animation with CSS</h2>
@@ -197,19 +247,27 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-2">
 		<label>Movement in CSS</label>
-		<p>Text.</p>
+		<p>We can achieve the same basic movement with CSS. We can even separate the movement out into separate pieces.</p>
 	</div>
 	<div class="col-md-4">
 		<svg width="200" height="200">
-			<rect x="25" y="25" width="50" height="50" style="fill:black;"  >
-				<animate attributeName="opacity" from="1" to="0" dur="3s" begin="hover"/> 
-			</rect>
+			<rect class="css_move" width="50" height="50" style="fill:rgb(100, 15, 20);" /> 
 		</svg>
 	</div
 	<div class="col-md-5">
-		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
-	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
-&lt/rect&gt;
+		<pre class="pre-scrollable"><code>&ltrect class="css_move" width="50" height="50" style="fill:rgb(100, 15, 20);"&gt;
+
+........
+
+.css_move {
+	animation: slide 4s infinite;
+}
+
+@keyframes slide {
+	0% {x: 50; y: 50 }
+	50% {x: 75; y: 50 }
+	100% {x: 150; y: 150}
+}
 		</code></pre>
 	</div>
 </div>
@@ -218,21 +276,21 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-2">
 		<label>Simple Color Change in CSS</label>
-		<p>We can us CSS to change properties and create animations for SVGs.</p>
+		<p>We can also use CSS to change properties like color.</p>
 	</div>
 	<div class="col-md-4">
 		<svg width="200" height="200">
-			<circle cx="50" cy="50" r="40" class="hue" />
+			<circle class="css_color" cx="50" cy="50" r="40"  />
 		</svg>
 	</div>
 	<div class="col-md-5">
-		<pre class="pre-scrollable"><code>&ltsvg width="200" height="200" &gt;
-	&ltcircle cx="50" cy="50" r="40" class="hue" /&gt;
+		<pre class="pre-scrollable"><code>&ltsvg class="css_color" width="200" height="200" &gt;
+	&ltcircle cx="50" cy="50" r="40" /&gt;
 &lt/svg &gt;
 
 ........
 
-.hue {
+.css_color {
   fill: red;
   animation: pulse 10s infinite;
 }
@@ -254,18 +312,63 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-2">
 		<label>On Hover in CSS</label>
-		<p>Text.</p>
+		<p>Normal CSS events like hover can still be used to create animations.</p>
 	</div>
 	<div class="col-md-4">
 		<svg width="200" height="200">
-			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
-			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+			<rect class="css_hover" x="25" y="25" width="50" height="50" />
 		</svg>
 	</div
 	<div class="col-md-5">
-		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
-	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
-&lt/rect&gt;
+		<pre class="pre-scrollable"><code>&ltrect class="css_hover" x="25" y="25" width="50" height="50" /&gt;
+		
+........
+
+.css_hover {
+  fill: red;
+}
+
+.css_hover:hover {
+  fill: blue;
+}
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Draw Path</label>
+		<p>A path can be animated using CSS too. As you can see, paths can become very complicated and
+			difficult to create manaully. There are many SVG editing tools online to help create shapes
+			and paths easily.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="400" height="400">
+			<path class="css_path" fill="#FFFFFF" stroke="#af274d" stroke-width="4" stroke-miterlimit=10" 
+				d="m42.5,149c10,-18.40884 58.16437,-51.78384 37.12155,-81.55663c-21.04282,-29.77279 124.70718,-55.94337 118.87845,-9.94337c-2.91437,23 113.33564,-72.82942 85.31423,10.94337c-28.02141,83.77279 62.68577,-3.26105 37.68577,58.55663c-25,61.81768 -27.65746,111.5 -104,63.5c-38.17127,-24 -99.67127,-32.67058 -114.62845,-4.69337c-14.95719,27.97721 -80.37155,0.01105 -60.37155,-36.80663z"/>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltpath class="css_path" fill="#FFFFFF" stroke="#af274d" stroke-width="4" stroke-miterlimit=10" 
+				d="m42.5,149c10,-18.40884 58.16437,-51.78384 37.12155,-81.55663c-21.04282,-29.77279 124.70718,-55.94337 118.87845,-9.94337c-2.91437,23 113.33564,-72.82942 85.31423,10.94337c-28.02141,83.77279 62.68577,-3.26105 37.68577,58.55663c-25,61.81768 -27.65746,111.5 -104,63.5c-38.17127,-24 -99.67127,-32.67058 -114.62845,-4.69337c-14.95719,27.97721 -80.37155,0.01105 -60.37155,-36.80663z"/&gt;
+
+........
+
+.css_path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 6s linear alternate infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}				
 		</code></pre>
 	</div>
 </div>
@@ -273,7 +376,7 @@
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
-		<h2>Advanced Animation with SMIL</h2>
+		<h2>More Animation with SMIL</h2>
 		<p>Still the best way to do some animations. Hopefully will have a close replacement?</p>
 	</div>
 </div>
@@ -283,18 +386,22 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-2">
 		<label>Multiple Animations</label>
-		<p>Text.</p>
+		<p>Multiple animations can be applied to the same shape within an SVG. They can animate 
+			different properties in different ways with different durations. </p>
 	</div>
 	<div class="col-md-4">
 		<svg width="200" height="200">
-			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
-			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+			<circle cx="80" cy="100" r="40" style="fill:grey;">
+				<animate attributeName="r" from="30" to="70" dur="5s" repeatCount="indefinite"/>
+				<animate attributeName="cx" from="80" to="120" dur="1s" repeatCount="indefinite"/>
+			</circle>
 		</svg>
 	</div
 	<div class="col-md-5">
-		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
-	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
-&lt/rect&gt;
+		<pre class="pre-scrollable"><code>&ltcircle cx="80" cy="100" r="40" style="fill:grey;"&gt;
+	&ltanimate attributeName="r" from="30" to="70" dur="5s" repeatCount="indefinite"/&gt; 
+	&ltanimate attributeName="cx" from="80" to="120" dur="1s" repeatCount="indefinite"/&gt; 
+&lt/circle&gt;
 		</code></pre>
 	</div>
 </div>
@@ -303,23 +410,207 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-2">
 		<label>Timing</label>
-		<p>Text.</p>
+		<p>We can time when we want animations to happen based on events like clicks, literal seconds, 
+			and even other animations. Here, click the orange rectangle, and after two seconds, one
+			animation will move it up. Then, when that is complete, the other animation will move it 
+			back down. </p>
 	</div>
 	<div class="col-md-4">
 		<svg width="200" height="200">
-			<rect id="rectangle" x="25" y="25" width="50" height="50" style="fill:black;"  />
-			<animate xlink:href="#rectangle" attributeName="transform" attributeType="XML" type="rotate" from="0 75 75" to="360 75 75" dur="3s" repeatCount="indefinite"/> 
+			<rect x="25" y="125" width="125" height="50" style="fill:orange;"  >
+				<animate id="move_up" attributeName="y" from="125" to="25" dur="3s" begin="click + 2s"/> 
+				<animate attributeName="y" from="25" to="125" dur="3s" begin="move_up.end"/> 
+			</rect>
 		</svg>
 	</div
 	<div class="col-md-5">
-		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:green;fill-opacity:0.4;"&gt;
-	&ltanimate attributeName="opacity" from="1" to="0" dur="3s" begin="click" /&gt; 
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="125" width="125" height="50" style="fill:orange;"&gt;
+	&ltanimate id="move_up" attributeName="y" from="125" to="25" dur="3s" begin="click + 2s" /&gt; 
+	&ltanimate attributeName="y" from="25" to="125" dur="3s" begin="move_up.end" /&gt; 
 &lt/rect&gt;
 		</code></pre>
 	</div>
 </div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Movement on a Path</label>
+		<p>With Animate Motion, we can move a shape along a specific path. This path can be simple or
+			extremely complex.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect x="25" y="25" width="50" height="50" style="fill:purple;"  >
+				<animateMotion dur="3s" repeatCount="indefinite" path="M10,110 A120,120 -45 0,1 110 10 A120,120 -45 0,1 10,110"/> 
+			</rect>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="25" y="25" width="50" height="50" style="fill:purple;" &gt;
+	&ltanimateMotion dur="3s" repeatCount="indefinite" path="M10,110 A120,120 -45 0,1 110 10 A120,120 -45 0,1 10,110" /&gt; 
+&lt/rect&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Morphing</label>
+		<p>You can morph between two shapes using a path or series of points. Click the shape to see
+			the morph. For the morph animation to work, the two paths need to have the same number 
+			of points.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<polygon fill="rgb(200, 90, 40)" points="0,40, 30,40 30,25 60,25 60,40 90,40 90,190 0,190">
+				<animate attributeName="points" to="30,110 0,110 40,20 80,20 50,90 90,90 0,190 0,189" begin="click" fill="freeze" dur="1s" />
+			</polygon> 
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltpolygon fill="rgb(200, 90, 40)" points="0,40, 30,40 30,25 60,25 60,40 90,40 90,190 0,190"&gt;
+	&ltanimate attributeName="points" to="30,110 0,110 40,20 80,20 50,90 90,90 0,190 0,189" begin="click" fill="freeze" dur="1s" /&gt; 
+&lt/polygon&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Text</label>
+		<p>SVGs can have text elements and those can also be animated.</p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<path id="path_type">
+				<animate attributeName="d" from="m0,110 h0" to="m0,110 h400" dur="3s" repeatCount="indefinite"/>
+			</path>
+			<text font-size="26" font-family="Montserrat" >
+				<textPath xlink:href="#path_type"> SVG Text.</textPath>
+			</text>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltpath id="path"&gt;
+	&ltanimate attributeName="d" from="m0,110 h0" to="m0,110 h400" dur="3s" repeatCount="indefinite" /&gt; 
+&lt/path&gt;
+&lttext font-size="26" font-family="Montserrat"&gt;
+	&lttextPath xlink:href="#path"&gt SVG Text. &lt/textPath&gt; 
+&lt/text&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Text Moving on Path</label>
+		<p>Similar to moving an object along a path, we can animate text moving along a path. This
+			path is made up of two different curves, and you can see a small inconsistency where they
+			meet. Notice the text twitch as it moves over that spot. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="500" height="250" >
+  			<path id="path_move" fill="none" stroke="red" stroke-miterlimit="10" d="m3.5,93.5c61.5,-51 64,67 169.5,39c85.166667,-52 140.333333,80 167.5,39"/>
+  			<text font-size="20" font-family="Montserrat">
+    			<textpath xlink:href="#path_move"> Text that moves.
+      				<animate attributeName="startOffset" from="0%" to ="100%" begin="0s" dur="8s" repeatCount="indefinite" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1"/>
+    			</textpath>
+  			</text>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltpath id="path_move" fill="none" stroke="red" stroke-miterlimit="10" d="m3.5,93.5c61.5,-51 64,67 169.5,39c85.166667,-52 140.333333,80 167.5,39" /&gt;
+&lttext font-size="20" font-family="Montserrat"&gt;
+	&lttextPath xlink:href="#path_move"&gt Text that moves along a path. 
+		&ltanimate attributeName="startOffset" from="0%" to ="100%" begin="0s" dur="8s" repeatCount="indefinite" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1"/&gt
+	&lt/textPath&gt; 
+&lt/text&gt;
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2">
+		<label>Using Layers</label>
+		<p>We can use layers to our advantage in order to give depth to animations. Here, we have a blue
+			rectangle with a green square rotating on top of it. We then put another half a rectangle on top
+			of that, in black. This gives the impression that the green square is going around the rectangle. </p>
+	</div>
+	<div class="col-md-4">
+		<svg width="200" height="200">
+			<rect x="50" y="10" height="150" width="50" fill="blue"/>
+			<g transform=" matrix(0.866, -0.5, 0.25, 0.433, 80, 80)">
+		    	<rect x="40" y="40" height="20" width="20" fill="lime">
+		    		<animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" />
+		    	</rect>
+		 	</g>
+		   <rect x="50" y="10" height="75" width="50"/>
+		</svg>
+	</div
+	<div class="col-md-5">
+		<pre class="pre-scrollable"><code>&ltrect x="50" y="10" height="150" width="50" fill="blue" /&gt;
+&ltg transform=" matrix(0.866, -0.5, 0.25, 0.433, 80, 80)"&gt
+	&ltrect x="40" y="40" height="20" width="20" fill="lime"&gt
+		&ltanimateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" /&gt
+	&lt/rect&gt
+&lt/g&gt
+&ltrect x="50" y="10" height="75" width="50"/&gt
+		</code></pre>
+	</div>
+</div>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>Advanced Examples</h2>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<p>This awesome lion is made up of nothing but simple polygons. This particular animation actually
+			uses SCSS, Sass, instead of CSS, so you can even use variables in creating your SVG animations.</p>
+		<p data-height="265" data-theme-id="0" data-slug-hash="RNLgJP" data-default-tab="html,result" data-user="grayghostvisuals" data-embed-version="2" data-pen-title="SVG Low PolyLion: Animated Polygons" class="codepen">See the Pen <a href="https://codepen.io/grayghostvisuals/pen/RNLgJP/">SVG Low PolyLion: Animated Polygons</a> by GRAY GHOST (<a href="http://codepen.io/grayghostvisuals">@grayghostvisuals</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+		<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+	</div>
+</div>
+<br>
 
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<p>Go ahead and drag the dot along the line. Not only can your animations look cool, they can 
+			even be interactive!</p>
+		<p data-height="265" data-theme-id="0" data-slug-hash="pbzEYr" data-default-tab="js,result" data-user="chrisgannon" data-embed-version="2" data-pen-title="Interactive SVG Info Graph" class="codepen">See the Pen <a href="https://codepen.io/chrisgannon/pen/pbzEYr/">Interactive SVG Info Graph</a> by Chris Gannon (<a href="http://codepen.io/chrisgannon">@chrisgannon</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+		<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+	</div>
+</div>
+<br>
 
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<p>This toaster is interactive and also very visually fun! There are tons of ways to use SVGs to 
+			bring a little excitement to your web projects. </p>
+		<p data-height="265" data-theme-id="0" data-slug-hash="NGGKWo" data-default-tab="html,result" data-user="chrisgannon" data-embed-version="2" data-pen-title="Interactive SVG Toast" class="codepen">See the Pen <a href="https://codepen.io/chrisgannon/pen/NGGKWo/">Interactive SVG Toast</a> by Chris Gannon (<a href="http://codepen.io/chrisgannon">@chrisgannon</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>Other Resources</h2>
+		<p>Interested in learning more? Here are some sources!!</p>
+	</div>
+</div>
+<br>
+<!------------------------------------------------------------------------------->
 
 
 

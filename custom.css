@@ -8,7 +8,21 @@ pre code {
     white-space: pre;
 }
 
-.hue {
+.test {
+	fill: blue;
+}
+
+.css_move {
+	animation: slide 4s infinite;
+}
+
+@keyframes slide {
+	0% {x: 50; y: 50 }
+	50% {x: 75; y: 50 }
+	100% {x: 150; y: 150}
+}
+
+.css_color {
   fill: red;
   animation: pulse 10s infinite;
 }
@@ -23,57 +37,25 @@ pre code {
   100% { fill: #ff0000 }
 }
 
-#################################
-
-.iconic-lightbulb {
-  cursor: pointer;
+.css_hover {
+  fill: red;
 }
 
-.iconic-lightbulb * {
-  -webkit-transition: .4s;
-  -moz-transition: .4s;
-  transition: .4s;
+.css_hover:hover {
+	fill: blue;
 }
 
-.iconic-lightbulb .icon-container {
-  fill: #fff;
-  stroke-width: 6;
-  stroke: #fff;
-
-  -webkit-transition: .3s;
-  -moz-transition: .3s;
-  transition: .3s;
+.css_path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 6s linear alternate infinite;
 }
 
-.iconic-lightbulb:hover .icon-container {
-  fill: #fff8db;
-
-  -webkit-transition: 2s;
-  transition: 2s;
-  -webkit-transition: 2s;
-}
-
-.iconic-lightbulb .iconic-lightbulb-light * {
-  stroke-width: 16;
-  stroke: #ddd;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.iconic-lightbulb:hover .iconic-lightbulb-light * {
-  stroke: #fc0;
-  stroke-width: 32;
-}
-
-.iconic-lightbulb .iconic-lightbulb-base {
-  fill: #666;
-}
-
-.iconic-lightbulb .iconic-lightbulb-screws * {
-  fill: none;
-  stroke-width: 16;
-  stroke: #333;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
