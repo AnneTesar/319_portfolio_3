@@ -1,0 +1,6 @@
+Tried to deploy to cs319.cs.iastate.edu/home/atesar/Portfolio3/index.html but having a hard time actually navigating there. 
+This should run just fine locally for you though; it's pretty simple. 
+
+The functionality and code that's important is pretty much all of it. But it's displayed in a way that it should be very easy
+to understand. More complicated examples are in the "More Animation with SMIL" section. All examples have their code snippets
+directly next to their demo on the page. 
